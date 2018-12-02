@@ -100,7 +100,7 @@ sudo apt-get install -qq -y screenfetch &> /dev/null
 sudo apt-get install -qq -y cmatrix &> /dev/null
 printOperationResult "install other tools"
 
-printOpertation "add custom scripts"
+printOperation "add custom scripts"
 mkdir -p ~/.scripts
 cp $(pwd)/scripts/* ~/.scripts/
-printOpertationResult "add custom scripts"
+printOperationResult "add custom scripts"
