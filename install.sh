@@ -76,11 +76,6 @@ printOperation "create alias for windows programs"
 sudo ln -sf $(pwd)/bin/* /usr/bin/
 printOperationResult "create alias for windows programs"
 
-# printOpertation "add custom scripts"
-# mkdir -p ~/.scripts
-# cp $(pwd)/scripts/* ~/.scripts/
-# printOpertationResult "add custom scripts"
-
 printOperation "create alias for windows folders"
 win_username=`cmd.exe /C echo %username% | tr -cd "[0-9a-zA-Z]"`
 rm -f ~/c
@@ -104,3 +99,8 @@ printOperation "install other tools"
 sudo apt-get install -qq -y screenfetch &> /dev/null
 sudo apt-get install -qq -y cmatrix &> /dev/null
 printOperationResult "install other tools"
+
+printOpertation "add custom scripts"
+mkdir -p ~/.scripts
+cp $(pwd)/scripts/* ~/.scripts/
+printOpertationResult "add custom scripts"
