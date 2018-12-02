@@ -92,6 +92,9 @@ alias glg="git lg"
 alias gcm="git commit -m"
 alias gcan="git commit --amend --no-edit"
 
+# add other alias
+alias x="cmatrix -s"
+
 # set up search history with arrow keys
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
