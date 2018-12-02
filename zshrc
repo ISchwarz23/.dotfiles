@@ -103,6 +103,10 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# tweak highlighter
+ZSH_HIGHLIGHT_STYLES[path]=none
+#ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
 # print system info on start
 echo
 screenfetch 2> /dev/null
