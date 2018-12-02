@@ -86,6 +86,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# overwrite some git alias
+alias gst="git st"
+alias glg="git lg"
+
 # set up search history with arrow keys
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
