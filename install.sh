@@ -50,6 +50,7 @@ printOperationResult "set zsh as default shell"
 printOperation "configure zsh"
 [ -d ~/.oh-my-zsh ] || git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 [ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+chmod 711 ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 mkdir -p ~/.oh-my-zsh && mkdir -p ~/.oh-my-zsh/themes
 ln -sf $(pwd)/oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
 ln -sf $(pwd)/dircolors ~/.dircolors
@@ -91,6 +92,6 @@ sudo apt-get install -qq -y python-pip &> /dev/null
 printOperationResult "install dev tools"
 
 printOperation "install other tools"
-sudo apt-get -qq -y install screenfetch &> /dev/null
+sudo apt-get install -qq -y screenfetch &> /dev/null
 sudo apt-get install -qq -y cmatrix &> /dev/null
 printOperationResult "install other tools"
