@@ -89,6 +89,8 @@ source $ZSH/oh-my-zsh.sh
 # overwrite some git alias
 alias gst="git st"
 alias glg="git lg"
+alias gcm="git commit -m"
+alias gcan="git commit --amend --no-edit"
 
 # set up search history with arrow keys
 autoload -U up-line-or-beginning-search
