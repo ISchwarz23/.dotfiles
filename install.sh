@@ -30,15 +30,17 @@ fi
 
 # start of script
 printOperation "update packages"
-sudo apt-get -qq update
+sudo apt-get -qq update &> /dev/null
 printOperationResult "update packages"
 
 printOperation "install base packages"
-sudo apt-get -qq -y install curl zsh git 2> /dev/null
+sudo apt-get -qq -y install curl zsh git &> /dev/null
 printOperationResult "install base packages"
 
 printOperation "update dotfiles"
-git pull 2> /dev/null
+git stash &> /dev/null
+git pull &> /dev/null
+git stash pop &> /dev/null
 printOperationResult "update dotfiles"
 
 printOperation "set zsh as default shell"
@@ -83,12 +85,12 @@ printOperationResult "create alias for windows folders"
 
 printOperation "install dev tools"
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - &> /dev/null
-sudo apt-get install -qq -y nodejs 2> /dev/null
-sudo apt-get install -qq -y npm 2> /dev/null
-sudo apt-get install -qq -y python-pip 2> /dev/null
+sudo apt-get install -qq -y nodejs &> /dev/null
+sudo apt-get install -qq -y npm &> /dev/null
+sudo apt-get install -qq -y python-pip &> /dev/null
 printOperationResult "install dev tools"
 
 printOperation "install other tools"
-sudo apt-get -qq -y install screenfetch 2> /dev/null
-sudo apt-get install -qq -y cmatrix 2> /dev/null
+sudo apt-get -qq -y install screenfetch &> /dev/null
+sudo apt-get install -qq -y cmatrix &> /dev/null
 printOperationResult "install other tools"
