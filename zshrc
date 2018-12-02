@@ -101,4 +101,6 @@ bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
 # print system info on start
+echo
 screenfetch 2> /dev/null
+echo -e "\n"
