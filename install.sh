@@ -43,7 +43,7 @@ printOperationResult "install base packages"
 printOperation "update dotfiles"
 git stash &> /dev/null
 git pull &> /dev/null
-git stash pop &> /dev/null
+git stash pop &> /dev/null | true
 printOperationResult "update dotfiles"
 
 printOperation "set zsh as default shell"
