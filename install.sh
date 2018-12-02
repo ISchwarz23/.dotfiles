@@ -28,6 +28,9 @@ if [ $? != 0 ]; then
     read git_email
 fi
 
+# force password input
+sudo echo
+
 # start of script
 printOperation "update packages"
 sudo apt-get -qq update &> /dev/null
