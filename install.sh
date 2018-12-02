@@ -51,12 +51,18 @@ ln -sf $(pwd)/bashrc ~/.bashrc
 printOperationResult "set zsh as default shell"
 
 printOperation "configure zsh"
-[ -d ~/.oh-my-zsh ] || git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+# syntax highlighting
 [ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 chmod 711 ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+# suggestions
+[ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] || git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+chmod 711 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+# themes
 mkdir -p ~/.oh-my-zsh && mkdir -p ~/.oh-my-zsh/themes
 ln -sf $(pwd)/oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
+# color fix
 ln -sf $(pwd)/dircolors ~/.dircolors
+# settings
 ln -sf $(pwd)/zshrc ~/.zshrc
 printOperationResult "configure zsh"
 
