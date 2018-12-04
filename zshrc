@@ -95,6 +95,10 @@ alias gcan="git commit --amend --no-edit"
 # add other alias
 alias x="cmatrix -s"
 
+# add custom alias
+touch -a '.alias'
+source '.alias'
+
 # set up search history with arrow keys
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
