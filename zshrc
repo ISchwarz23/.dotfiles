@@ -87,10 +87,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # overwrite some git alias
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
 alias gst="git st"
 alias glg="git lg"
+alias gcb='git checkout -b'
 alias gcm="git commit -m"
 alias gcan="git commit --amend --no-edit"
+alias gdw='git diff --word-diff'
+alias diff='gdw'
 
 # add other alias
 alias x="cmatrix -s"
