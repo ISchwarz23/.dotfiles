@@ -100,6 +100,7 @@ alias diff='gdw'
 
 # add other alias
 alias x="cmatrix -s"
+alias fuck="sudo $(fc -ln -1)"
 
 # add custom alias
 touch -a '.alias'
