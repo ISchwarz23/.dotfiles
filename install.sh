@@ -49,12 +49,6 @@ printOperation "install base packages"
 sudo yum -y install curl dos2unix zsh oh-my-zsh git &> /dev/null
 printOperationResult "install base packages"
 
-printOperation "update dotfiles"
-#git stash &> /dev/null
-#git pull &> /dev/null
-#git stash pop &> /dev/null | true
-printOperationResult "update dotfiles"
-
 printOperation "set zsh as default shell"
 ln -sf $DIR/bashrc ~/.bashrc
 printOperationResult "set zsh as default shell"
