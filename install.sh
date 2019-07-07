@@ -5,6 +5,15 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+# get script dir
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
 # methods
 function printOperation {
         echo -n "[ ] $1"
@@ -33,24 +42,28 @@ sudo echo
 
 # start of script
 printOperation "update packages"
-sudo apt-get -qq update &> /dev/null
+sudo yum -y update &> /dev/null
 printOperationResult "update packages"
 
 printOperation "install base packages"
-sudo apt-get -qq -y install curl zsh git &> /dev/null
+sudo yum -y install curl dos2unix zsh oh-my-zsh git &> /dev/null
 printOperationResult "install base packages"
 
 printOperation "update dotfiles"
-git stash &> /dev/null
-git pull &> /dev/null
-git stash pop &> /dev/null | true
+#git stash &> /dev/null
+#git pull &> /dev/null
+#git stash pop &> /dev/null | true
 printOperationResult "update dotfiles"
 
 printOperation "set zsh as default shell"
-ln -sf $(pwd)/bashrc ~/.bashrc
+ln -sf $DIR/bashrc ~/.bashrc
 printOperationResult "set zsh as default shell"
 
 printOperation "configure zsh"
+# install oh-my-zsh
+curl -Lo install-zsh.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh &> /dev/null
+sh install-zsh.sh --unattended &> /dev/null
+rm -f install-zsh.sh
 # syntax highlighting
 [ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting &> /dev/null
 chmod 711 ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -59,48 +72,21 @@ chmod 711 ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 chmod 711 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 # themes
 mkdir -p ~/.oh-my-zsh && mkdir -p ~/.oh-my-zsh/themes
-ln -sf $(pwd)/oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
-# color fix
-ln -sf $(pwd)/dircolors ~/.dircolors
+ln -sf $DIR/oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
 # settings
-ln -sf $(pwd)/zshrc ~/.zshrc
+rm ~/.zshrc
+ln -sf $DIR/zshrc ~/.zshrc
 printOperationResult "configure zsh"
 
 printOperation "configure git"
-yes | cp -f $(pwd)/gitconfig ~/.gitconfig
+yes | cp -f $DIR/gitconfig ~/.gitconfig
 git config --global user.name "$git_name"
 git config --global user.email "$git_email"
 printOperationResult "configure git"
 
-printOperation "create alias for windows programs"
-sudo ln -sf $(pwd)/bin/* /usr/bin/
-printOperationResult "create alias for windows programs"
+printOperation "install web-dev tools"
+sudo yum install -y gcc-c++ make &> /dev/null
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash - &> /dev/null
+sudo yum install -y nodejs &> /dev/null
+printOperationResult "install web-dev tools"
 
-printOperation "create alias for windows folders"
-win_username=`cmd.exe /C echo %username% | tr -cd "[0-9a-zA-Z]"`
-rm -f ~/c
-ln -sf /mnt/c ~/c
-rm -f ~/projects
-ln -sf /mnt/c/Users/$win_username/Projects ~/projects
-rm -f ~/downloads
-ln -sf /mnt/c/Users/$win_username/Downloads ~/downloads
-rm -f ~/pictures
-ln -sf /mnt/c/Users/$win_username/Pictures ~/pictures
-printOperationResult "create alias for windows folders"
-
-printOperation "install dev tools"
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - &> /dev/null
-sudo apt-get install -qq -y nodejs &> /dev/null
-sudo apt-get install -qq -y npm &> /dev/null
-sudo apt-get install -qq -y python-pip &> /dev/null
-printOperationResult "install dev tools"
-
-printOperation "install other tools"
-sudo apt-get install -qq -y screenfetch &> /dev/null
-sudo apt-get install -qq -y cmatrix &> /dev/null
-printOperationResult "install other tools"
-
-printOperation "add custom scripts"
-mkdir -p ~/.scripts
-cp $(pwd)/scripts/* ~/.scripts/
-printOperationResult "add custom scripts"

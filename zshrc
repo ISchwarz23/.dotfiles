@@ -98,13 +98,9 @@ alias gcan="git commit --amend --no-edit"
 alias gdw='git diff --word-diff'
 alias diff='gdw'
 
-# add other alias
-alias x="cmatrix -s"
-alias fuck="sudo $(fc -ln -1)"
-
 # add custom alias
-touch -a '.alias'
-source '.alias'
+touch ~/.aliases
+source ~/.aliases
 
 # set up search history with arrow keys
 autoload -U up-line-or-beginning-search
@@ -118,7 +114,3 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 ZSH_HIGHLIGHT_STYLES[path]=none
 #ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
-# print system info on start
-echo
-screenfetch 2> /dev/null
-echo -e "\n"
