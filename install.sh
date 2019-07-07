@@ -80,7 +80,11 @@ printOperationResult "configure git"
 
 printOperation "install web-dev tools"
 sudo yum install -y gcc-c++ make &> /dev/null
+# node
 curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash - &> /dev/null
 sudo yum install -y nodejs &> /dev/null
+# yarn
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo &> /dev/null
+sudo yum install -y yarn &> /dev/null
 printOperationResult "install web-dev tools"
 
