@@ -11,7 +11,7 @@ oh-my-zsh-plugin-syntax-highlighting:
 	PLUGIN_DIR="$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting"; \
 	if [ ! -d "$$PLUGIN_DIR" ]; then \
 		git clone $$PLUGIN_URL $$PLUGIN_DIR; \
-		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/" ~/.zshrc; \
+		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/)" ~/.zshrc; \
 	fi
 
 oh-my-zsh-plugin-auto-suggestions:
@@ -20,5 +20,5 @@ oh-my-zsh-plugin-auto-suggestions:
 	PLUGIN_DIR="$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting"; \
 	if [ ! -d "$$PLUGIN_DIR" ]; then \
 		git clone $$PLUGIN_URL $$PLUGIN_DIR; \
-		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/" ~/.zshrc; \
+		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/)" ~/.zshrc; \
 	fi
