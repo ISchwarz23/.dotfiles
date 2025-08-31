@@ -1,7 +1,13 @@
 ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
 
-install: oh-my-zsh-plugins
+install: apply-dotfiles oh-my-zsh-plugins
+
+
+apply-dotfiles:
+	@stow git
+	@stow zsh
+
 
 oh-my-zsh-plugins: oh-my-zsh-plugin-syntax-highlighting oh-my-zsh-plugin-auto-suggestions
 
