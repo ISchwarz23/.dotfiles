@@ -1,21 +1,5 @@
 [push]
 	default = matching
-[core]
-	trustctime = false
-	editor = vim
-	filemode = false
-	autocrlf = input
-[color]
-	ui = true
-[credential]
-	helper = cache --timeout=3600
-[merge]
-	tool = vimdiff
-[mergetool]
-	keeptemporaries = false
-	keepbackups = false
-	prompt = false
-	trustexitcode = false
 [alias]
 	last = log -1 --stat
 	cp = cherry-pick
