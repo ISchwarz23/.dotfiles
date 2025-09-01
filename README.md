@@ -17,7 +17,7 @@ To use the config from this dot-files repo, you need to have `stow` installed on
 Clone this repo to your home directory.
 
 ```shell
-cd ~; git clone https://github.com/ISchwarz23/.dotfiles.git; cd .dotfiles
+cd ~ && git clone https://github.com/ISchwarz23/.dotfiles.git && cd .dotfiles
 ```
 
 ### Step 2
@@ -29,3 +29,8 @@ stow git
 stow zsh
 # ...
 ```
+
+## To Do
+
+- nvim config
+- nix shell config and alias

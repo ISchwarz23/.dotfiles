@@ -1,13 +1,18 @@
 ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
+.PHONY: all
+all: git zsh
 
-install: apply-dotfiles oh-my-zsh-plugins
 
-
-apply-dotfiles:
+git:
 	@stow git
-	@stow zsh
+	@touch ~/.gitconfig-custom
 
+
+zsh: oh-my-zsh-plugins
+	@stow zsh
+	@touch ~/.alias-custom
+	@touch ~/.zshrc-custom
 
 oh-my-zsh-plugins: oh-my-zsh-plugin-syntax-highlighting oh-my-zsh-plugin-auto-suggestions
 
