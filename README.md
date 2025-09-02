@@ -25,10 +25,18 @@ cd ~ && git clone https://github.com/ISchwarz23/.dotfiles.git && cd .dotfiles
 Install the config for the tools you use on your system.
 
 ```shell
-stow git
-stow zsh
+make
+```
+
+In case you want to install only specific configs, you can do so by using the following commands:
+
+```shell
+make git
+make zsh
 # ...
 ```
+
+> Please make sure you know what you are doing, when applying only specific configs, as there are some interdependencies.
 
 ## To Do
 
