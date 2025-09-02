@@ -1,6 +1,7 @@
 ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
-.PHONY: all
+.PHONY: git zsh
+
 all: git zsh
 
 
