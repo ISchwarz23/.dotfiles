@@ -9,10 +9,10 @@
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  /* background-color: #1e1e2e; */
+  /* background-color: #1e1e1e; */
   /* background-color: #181825; */
   /* background-color: #11111b; */
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 1.0);
 }
 
 #workspaces button {
@@ -20,22 +20,22 @@ window#waybar {
   margin: 0.4rem 0.25rem;
   border-radius: 6px;
   /* background-color: #181825; */
-  background-color: #1e1e2e;
+  background-color: #1e1e1e;
   color: #cdd6f4;
 }
 
 #workspaces button:hover {
-  color: #1e1e2e;
+  color: #1e1e1e;
   background-color: #cdd6f4;
 }
 
 #workspaces button.active {
-  background-color: #1e1e2e;
+  background-color: #1e1e1e;
   color: #89b4fa;
 }
 
 #workspaces button.urgent {
-  background-color: #1e1e2e;
+  background-color: #1e1e1e;
   color: #f38ba8;
 }
 
@@ -54,7 +54,7 @@ window#waybar {
   margin: 0.4rem 0.25rem;
   border-radius: 6px;
   /* background-color: #181825; */
-  background-color: #1e1e2e;
+  background-color: #1e1e1e;
 }
 
 #mpris.playing {
