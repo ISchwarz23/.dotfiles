@@ -5,7 +5,11 @@ PACKAGES="$@"
 
 echo "[INFO] Going to install $PACKAGES..."
 
-if command -v apt > /dev/null 2>&1; then
+if command -v pkg > /dev/null 2>&1; then
+    echo "[DEBUG] Using pkg..."
+    pkg update -y > /dev/null
+    pkg install -y $PACKAGES > /dev/null
+elif command -v apt > /dev/null 2>&1; then
     echo "[DEBUG] Using apt..."
     sudo apt-get update -y > /dev/null
     sudo apt-get install -y $PACKAGES > /dev/null
@@ -24,10 +28,6 @@ elif command -v pacman > /dev/null 2>&1; then
     echo "[DEBUG] Using pacman..."
     sudo pacman -Syu --noconfirm > /dev/null 2>&1 || true
     sudo pacman -S --noconfirm --needed $PACKAGES > /dev/null
-elif command -v pkg > /dev/null 2>&1; then
-    echo "[DEBUG] Using pkg (Termux)..."
-    pkg update -y > /dev/null
-    plg install -y $PACKAGES > /dev/null
 else
     echo "[ERROR] No supported package manager found!"
     exit 1
