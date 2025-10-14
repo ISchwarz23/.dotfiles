@@ -10,7 +10,7 @@ basics: stow curl git zsh nvim
 curl: install-curl
 
 install-curl:
-	@bash -c install.sh curl
+	@bash -c "./install.sh curl"
 
 
 # Stow
@@ -18,15 +18,14 @@ install-curl:
 stow: install-stow
 
 install-stow:
-	@./install.sh stow
-
+	@bash -c "./install.sh stow"
 
 # git
 
 git: install-git configure-git
 
 install-git:
-	@bash -c install.sh git
+	@bash -c "./install.sh git"
 
 configure-git:
 	@stow git
@@ -38,7 +37,7 @@ configure-git:
 zsh: install-zsh configure-zsh
 
 install-zsh:
-	@bash -c install.sh zsh
+	@bash -c "./install.sh zsh"
 
 configure-zsh:
 	@stow zsh
@@ -76,7 +75,7 @@ install-oh-my-zsh-plugin-auto-suggestions:
 nvim: install-nvim configure-nvim
 
 install-nvim:
-	@bash -c install.sh nvim
+	@bash -c "./install.sh nvim"
 
 configure-nvim:
 	@stow nvim
