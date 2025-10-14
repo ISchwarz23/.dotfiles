@@ -1,8 +1,13 @@
 ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
 
-# Collections
-basics: stow curl git zsh nvim
+# Collection of setups
+basic-setup: stow curl git zsh nvim jq
+
+web-dev-setup: basic-setup nvm node
+dev-ops-setup: basic-setup podman kubectl
+
+full-setup: web-dev-setup dev-ops-setup
 
 
 # cURL
@@ -20,6 +25,7 @@ stow: install-stow
 install-stow:
 	@bash -c "./install.sh stow"
 
+
 # git
 
 git: install-git configure-git
@@ -30,6 +36,14 @@ install-git:
 configure-git:
 	@stow git
 	@touch ~/.gitconfig-custom
+
+
+# jq
+
+jq: install-jq
+
+install-jq:
+	@bash -c "./install.sh jq"
 
 
 # zsh + oh-my-zsh
@@ -79,4 +93,36 @@ install-nvim:
 
 configure-nvim:
 	@stow nvim
+
+
+# nvm
+
+nvm: install-nvm
+
+install-nvm: curl
+	@curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash > /dev/null
+
+
+# node
+
+node: install-node
+
+install-node: nvm
+	@nvm install --lts
+
+
+# podman
+
+podman: install-podman
+
+install-podman:
+	@bash -c "./install.sh podman"
+
+
+# kubectl
+
+podman: install-kubectl
+
+install-kubectl: curl
+	@curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
