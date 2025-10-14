@@ -3,3 +3,5 @@ alias ll="ls -la"
 alias gca="git commit --amend"
 alias gcan="git commit --amend --no-edit"
 alias glg="git lg"
+
+alias vi="nvim"
