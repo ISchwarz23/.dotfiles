@@ -89,7 +89,7 @@ install-oh-my-zsh-plugin-auto-suggestions:
 nvim: install-nvim configure-nvim
 
 install-nvim:
-	@bash -c "./install.sh nvim"
+	@bash -c "./install.sh neovim"
 
 configure-nvim:
 	@stow nvim

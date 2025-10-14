@@ -7,8 +7,8 @@ echo "[INFO] Going to install $PACKAGES..."
 
 if command -v pkg > /dev/null 2>&1; then
     echo "[DEBUG] Using pkg..."
-    pkg update -y > /dev/null
-    pkg install -y $PACKAGES > /dev/null
+    apt-get update -y > /dev/null
+    apt-get install -y $PACKAGES > /dev/null
 elif command -v apt > /dev/null 2>&1; then
     echo "[DEBUG] Using apt..."
     sudo apt-get update -y > /dev/null
