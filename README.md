@@ -40,5 +40,5 @@ make zsh
 
 ## To Do
 
-- nvim config
 - nix shell config and alias
+- kitty config
