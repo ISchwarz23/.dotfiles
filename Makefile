@@ -2,7 +2,7 @@ ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
 
 # Collection of setups
-basic-setup: stow curl git zsh nvim jq
+basic-setup: stow curl git oh-my-zsh nvim jq
 
 web-dev-setup: basic-setup nvm node
 dev-ops-setup: basic-setup podman kubectl
@@ -34,8 +34,10 @@ install-git:
 	@bash -c "./install.sh git"
 
 configure-git:
+	@echo "[INFO] configuring git..."
 	@stow git
 	@touch ~/.gitconfig-custom
+	@echo "[SUCCESS] git configured!"
 
 
 # jq
@@ -54,15 +56,19 @@ install-zsh:
 	@bash -c "./install.sh zsh"
 
 configure-zsh:
+	@echo "   [INFO] configuring zsh..."
 	@stow zsh
 	@touch ~/.alias-custom
 	@touch ~/.zshrc-custom
+	@echo "[SUCCESS] zsh configured!"
 
 
 oh-my-zsh: install-oh-my-zsh install-oh-my-zsh-plugins
 
 install-oh-my-zsh: zsh
-	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	@echo "   [INFO] installing oh-my-zsh..."
+	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
+	@echo "[SUCCESS] oh-my-zsh installed!"
 
 install-oh-my-zsh-plugins: install-oh-my-zsh install-oh-my-zsh-plugin-syntax-highlighting install-oh-my-zsh-plugin-auto-suggestions
 
@@ -71,8 +77,12 @@ install-oh-my-zsh-plugin-syntax-highlighting:
 	PLUGIN_URL="https://github.com/zsh-users/zsh-syntax-highlighting.git"; \
 	PLUGIN_DIR="$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting"; \
 	if [ ! -d "$$PLUGIN_DIR" ]; then \
+		echo "   [INFO] installing oh-my-zsh $$PLUGIN_NAME..."; \
 		git clone $$PLUGIN_URL $$PLUGIN_DIR; \
 		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/)" ~/.zshrc; \
+		echo "[SUCCESS] oh-my-zsh $$PLUGIN_NAME installed!"; \
+	else \
+		echo "   [INFO] oh-my-zsh $$PLUGIN_NAME already installed, skipping."; \
 	fi
 
 install-oh-my-zsh-plugin-auto-suggestions:
@@ -80,8 +90,12 @@ install-oh-my-zsh-plugin-auto-suggestions:
 	PLUGIN_URL="https://github.com/zsh-users/zsh-autosuggestions.git"; \
 	PLUGIN_DIR="$(ZSH_CUSTOM)/plugins/zsh-autosuggestions"; \
 	if [ ! -d "$$PLUGIN_DIR" ]; then \
+		echo "   [INFO] installing oh-my-zsh suggestions..."; \
 		git clone $$PLUGIN_URL $$PLUGIN_DIR; \
 		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/)" ~/.zshrc; \
+		echo "[SUCCESS] oh-my-zsh $$PLUGIN_NAME installed!"; \
+	else \
+		echo "   [INFO] oh-my-zsh $$PLUGIN_NAME already installed, skipping."; \
 	fi
 
 # nvim
@@ -100,7 +114,9 @@ configure-nvim:
 nvm: install-nvm
 
 install-nvm: curl
+	@echo "   [INFO] installing nvm..."
 	@curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash > /dev/null
+	@echo "[SUCCESS] nvm installed!"
 
 
 # node
@@ -108,7 +124,9 @@ install-nvm: curl
 node: install-node
 
 install-node: nvm
+	@echo "   [INFO] installing node..."
 	@. ~/.nvm/nvm.sh && nvm install --lts > /dev/null
+	@echo "[SUCCESS] node installed!"
 
 
 # podman
@@ -121,8 +139,12 @@ install-podman:
 
 # kubectl
 
-podman: install-kubectl
+kubectl: install-kubectl
 
 install-kubectl: curl
-	@curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+	@echo "   [INFO] installing kubectl..."
+	@curl -Os "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" > /dev/null
+	@sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl > /dev/null
+	@rm -f kubectl
+	@echo "[SUCCESS] kubectl installed!"
 

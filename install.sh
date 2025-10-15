@@ -4,7 +4,7 @@ set -e
 PACKAGES=("$@")
 
 if [ ${#PACKAGES[@]} -eq 0 ]; then
-    echo "[ERROR] No packages specified."
+    echo "  [ERROR] No packages specified."
     exit 1
 fi
 
@@ -17,7 +17,7 @@ for manager in pkg apt-get apt dnf yum pacman; do
 done
 
 if [ -z "$PKG_MANAGER" ]; then
-    echo "[ERROR] No supported package manager found!"
+    echo "  [ERROR] No supported package manager found!"
     exit 1
 fi
 
@@ -35,7 +35,7 @@ is_installed() {
 # Function to install a single package
 install_pkg() {
     local pkg=$1
-    echo "[INFO] Installing: $pkg"
+    echo "   [INFO] Installing $pkg..."
 
     case $PKG_MANAGER in
         pkg)
@@ -66,7 +66,7 @@ install_pkg() {
 # Main loop — check and install individually
 for pkg in "${PACKAGES[@]}"; do
     if is_installed "$pkg"; then
-        echo "[INFO] $pkg is already installed, skipping."
+        echo "   [INFO] $pkg is already installed, skipping."
     else
         install_pkg "$pkg"
     fi
