@@ -108,7 +108,7 @@ install-nvm: curl
 node: install-node
 
 install-node: nvm
-	. ~/.nvm/nvm.sh && nvm install --lts
+	@. ~/.nvm/nvm.sh && nvm install --lts > /dev/null
 
 
 # podman
