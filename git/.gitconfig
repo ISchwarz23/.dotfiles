@@ -23,5 +23,7 @@
 	lg = !git lg2
 	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	su = !git set-upstream
+[core]
+	editor = nvim
 [include]
     path = ~/.gitconfig-custom
