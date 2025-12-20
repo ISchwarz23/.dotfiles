@@ -115,7 +115,14 @@ tmux: install-tmux configure-tmux
 
 install-tmux:
 	@bash -c "./install.sh tmux"
-	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	@if [ ! -d ~/.tmux/plugins/tpm ]; then \
+		echo "   [INFO] installing tmux plugin manager..."; \
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > /dev/null; \
+		echo "[SUCCESS] tmux plugin manager installed!"; \
+	else \
+		echo "   [INFO] tmux plugin manager already installed, skipping."; \
+	fi
+
 
 configure-tmux:
 	@stow tmux
