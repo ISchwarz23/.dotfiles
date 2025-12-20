@@ -34,7 +34,7 @@ install-git:
 	@bash -c "./install.sh git"
 
 configure-git:
-	@echo "[INFO] configuring git..."
+	@echo "   [INFO] configuring git..."
 	@stow git
 	@touch ~/.gitconfig-custom
 	@echo "[SUCCESS] git configured!"
@@ -133,7 +133,7 @@ configure-tmux:
 tmux-xpanes: tmux install-tmux-xpanes
 
 install-tmux-xpanes:
-	@wget https://raw.githubusercontent.com/greymd/tmux-xpanes/v4.2.0/bin/xpanes -O ./xpanes
+	@curl https://raw.githubusercontent.com/greymd/tmux-xpanes/v4.2.0/bin/xpanes > ./xpanes
 	@sudo install -m 0755 xpanes /usr/local/bin/xpanes
 	@rm -f ./xpanes
 
