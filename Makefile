@@ -118,26 +118,26 @@ configure-nvim:
 
 # tmux
 
-tmux: install-tmux configure-tmux
+tmux: install-tmux install-tpm configure-tmux
 
 install-tmux:
 	@bash -c "./install-pkg.sh tmux"
+
+install-tpm: install-tmux
 	@if [ ! -d ~/.tmux/plugins/tpm ]; then \
 		echo "   [INFO] installing tmux plugin manager..."; \
+		mkdir -p ~/.config/tmux/plugins; \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > /dev/null; \
 		echo "[SUCCESS] tmux plugin manager installed!"; \
 	else \
 		echo "   [INFO] tmux plugin manager already installed, skipping."; \
 	fi
 
-
 configure-tmux:
 	@echo "   [INFO] configuring tmux..."
 	@stow tmux
 	@echo "[SUCCESS] tmux configured!"
 
-
-# tmux-xpanes
 
 tmux-xpanes: tmux install-tmux-xpanes
 
