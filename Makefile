@@ -2,7 +2,7 @@ ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
 
 # Collection of setups
-basic-setup: stow curl git oh-my-zsh nvim jq
+basic-setup: stow curl git oh-my-zsh nvim tmux jq
 
 web-dev-setup: basic-setup nvm node
 dev-ops-setup: basic-setup podman kubectl
@@ -108,6 +108,17 @@ install-nvim:
 configure-nvim:
 	@stow nvim
 
+
+# tmux
+
+tmux: install-tmux configure-tmux
+
+install-tmux:
+	@bash -c "./install.sh tmux"
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+configure-tmux:
+	@stow tmux
 
 # nvm
 
