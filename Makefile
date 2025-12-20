@@ -66,9 +66,14 @@ configure-zsh:
 oh-my-zsh: install-oh-my-zsh install-oh-my-zsh-plugins
 
 install-oh-my-zsh: zsh
-	@echo "   [INFO] installing oh-my-zsh..."
-	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null
-	@echo "[SUCCESS] oh-my-zsh installed!"
+	@if [ ! -d ~/.oh-my-zsh ]; then \
+		echo "   [INFO] installing oh-my-zsh..."; \
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null; \
+		echo "[SUCCESS] oh-my-zsh installed!"; \
+	else \
+		echo "   [INFO] oh-my-zsh already installed, skipping..."; \
+	fi
+
 
 install-oh-my-zsh-plugins: install-oh-my-zsh install-oh-my-zsh-plugin-syntax-highlighting install-oh-my-zsh-plugin-auto-suggestions
 
@@ -106,7 +111,9 @@ install-nvim:
 	@bash -c "./install.sh neovim"
 
 configure-nvim:
+	@echo "   [INFO] configuring nvim..."
 	@stow nvim
+	@echo "[SUCCESS] nvim configured!"
 
 
 # tmux
@@ -125,17 +132,24 @@ install-tmux:
 
 
 configure-tmux:
+	@echo "   [INFO] configuring tmux..."
 	@stow tmux
+	@echo "[SUCCESS] tmux configured!"
 
 
 # tmux-xpanes
 
 tmux-xpanes: tmux install-tmux-xpanes
 
-install-tmux-xpanes:
-	@curl https://raw.githubusercontent.com/greymd/tmux-xpanes/v4.2.0/bin/xpanes > ./xpanes
-	@sudo install -m 0755 xpanes /usr/local/bin/xpanes
-	@rm -f ./xpanes
+install-tmux-xpanes: curl
+	@if [ ! -f /usr/local/bin/xpanes ]; then \
+		echo "   [INFO] installing tmux-xpanes..."; \
+		curl -s https://raw.githubusercontent.com/greymd/tmux-xpanes/v4.2.0/bin/xpanes > ./xpanes; \
+		sudo install -m 0755 xpanes /usr/local/bin/xpanes; \
+		echo "[SUCCESS] tmux-xpanes installed!"; \
+	else \
+		echo "   [INFO] tmux-xpanes already installed, skipping."; \
+	fi
 
 
 # nvm
