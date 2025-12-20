@@ -15,7 +15,7 @@ full-setup: web-dev-setup dev-ops-setup
 curl: install-curl
 
 install-curl:
-	@bash -c "./install.sh curl"
+	@bash -c "./install-pkg.sh curl"
 
 
 # Stow
@@ -23,7 +23,7 @@ install-curl:
 stow: install-stow
 
 install-stow:
-	@bash -c "./install.sh stow"
+	@bash -c "./install-pkg.sh stow"
 
 
 # git
@@ -31,7 +31,7 @@ install-stow:
 git: install-git configure-git
 
 install-git:
-	@bash -c "./install.sh git"
+	@bash -c "./install-pkg.sh git"
 
 configure-git:
 	@echo "   [INFO] configuring git..."
@@ -45,7 +45,7 @@ configure-git:
 jq: install-jq
 
 install-jq:
-	@bash -c "./install.sh jq"
+	@bash -c "./install-pkg.sh jq"
 
 
 # zsh + oh-my-zsh
@@ -53,7 +53,7 @@ install-jq:
 zsh: install-zsh configure-zsh
 
 install-zsh:
-	@bash -c "./install.sh zsh"
+	@bash -c "./install-pkg.sh zsh"
 
 configure-zsh:
 	@echo "   [INFO] configuring zsh..."
@@ -68,7 +68,7 @@ oh-my-zsh: install-oh-my-zsh install-oh-my-zsh-plugins
 install-oh-my-zsh: zsh
 	@if [ ! -d ~/.oh-my-zsh ]; then \
 		echo "   [INFO] installing oh-my-zsh..."; \
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null; \
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install-pkg.sh)" > /dev/null; \
 		echo "[SUCCESS] oh-my-zsh installed!"; \
 	else \
 		echo "   [INFO] oh-my-zsh already installed, skipping..."; \
@@ -108,7 +108,7 @@ install-oh-my-zsh-plugin-auto-suggestions:
 nvim: install-nvim configure-nvim
 
 install-nvim:
-	@bash -c "./install.sh neovim"
+	@bash -c "./install-pkg.sh neovim"
 
 configure-nvim:
 	@echo "   [INFO] configuring nvim..."
@@ -121,7 +121,7 @@ configure-nvim:
 tmux: install-tmux configure-tmux
 
 install-tmux:
-	@bash -c "./install.sh tmux"
+	@bash -c "./install-pkg.sh tmux"
 	@if [ ! -d ~/.tmux/plugins/tpm ]; then \
 		echo "   [INFO] installing tmux plugin manager..."; \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > /dev/null; \
@@ -158,7 +158,7 @@ nvm: install-nvm
 
 install-nvm: curl
 	@echo "   [INFO] installing nvm..."
-	@curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash > /dev/null
+	@curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install-pkg.sh | bash > /dev/null
 	@echo "[SUCCESS] nvm installed!"
 
 
@@ -177,7 +177,7 @@ install-node: nvm
 podman: install-podman
 
 install-podman:
-	@bash -c "./install.sh podman"
+	@bash -c "./install-pkg.sh podman"
 
 
 # kubectl
