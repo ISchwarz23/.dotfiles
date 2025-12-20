@@ -83,7 +83,7 @@ install-oh-my-zsh-plugin-syntax-highlighting:
 	PLUGIN_DIR="$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting"; \
 	if [ ! -d "$$PLUGIN_DIR" ]; then \
 		echo "   [INFO] installing oh-my-zsh $$PLUGIN_NAME..."; \
-		git clone $$PLUGIN_URL $$PLUGIN_DIR; \
+		git clone -q $$PLUGIN_URL $$PLUGIN_DIR; \
 		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/)" ~/.zshrc; \
 		echo "[SUCCESS] oh-my-zsh $$PLUGIN_NAME installed!"; \
 	else \
@@ -96,7 +96,7 @@ install-oh-my-zsh-plugin-auto-suggestions:
 	PLUGIN_DIR="$(ZSH_CUSTOM)/plugins/zsh-autosuggestions"; \
 	if [ ! -d "$$PLUGIN_DIR" ]; then \
 		echo "   [INFO] installing oh-my-zsh suggestions..."; \
-		git clone $$PLUGIN_URL $$PLUGIN_DIR; \
+		git clone -q $$PLUGIN_URL $$PLUGIN_DIR; \
 		sed -i.bak "s/plugins=(\(.*\))/plugins=(\1 $$PLUGIN_NAME/)" ~/.zshrc; \
 		echo "[SUCCESS] oh-my-zsh $$PLUGIN_NAME installed!"; \
 	else \
@@ -127,7 +127,7 @@ install-tpm: install-tmux
 	@if [ ! -d ~/.tmux/plugins/tpm ]; then \
 		echo "   [INFO] installing tmux plugin manager..."; \
 		mkdir -p ~/.config/tmux/plugins; \
-		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > /dev/null; \
+		git clone -q https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
 		echo "[SUCCESS] tmux plugin manager installed!"; \
 	else \
 		echo "   [INFO] tmux plugin manager already installed, skipping."; \
