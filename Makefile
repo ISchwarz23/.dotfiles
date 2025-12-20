@@ -2,7 +2,7 @@ ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
 
 # Collection of setups
-basic-setup: stow curl git oh-my-zsh nvim tmux jq
+basic-setup: stow curl git oh-my-zsh nvim tmux tmux-xpanes jq
 
 web-dev-setup: basic-setup nvm node
 dev-ops-setup: basic-setup podman kubectl
@@ -119,6 +119,17 @@ install-tmux:
 
 configure-tmux:
 	@stow tmux
+
+
+# tmux-xpanes
+
+tmux-xpanes: tmux install-tmux-xpanes
+
+install-tmux-xpanes:
+	@wget https://raw.githubusercontent.com/greymd/tmux-xpanes/v4.2.0/bin/xpanes -O ./xpanes
+	@sudo install -m 0755 xpanes /usr/local/bin/xpanes
+	@rm -f ./xpanes
+
 
 # nvm
 
