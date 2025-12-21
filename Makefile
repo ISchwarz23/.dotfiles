@@ -169,9 +169,13 @@ install-tmux-xpanes: curl
 nvm: install-nvm
 
 install-nvm: curl
-	@echo "   [INFO] installing nvm..."
-	@curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install-pkg.sh | bash > /dev/null
-	@echo "[SUCCESS] nvm installed!"
+	@if [ ! -d ~/.nvm ]; then \
+		echo "   [INFO] installing nvm..."; \
+		PROFILE=/dev/null bash -c "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash > /dev/null 2>&1"; \
+		echo "[SUCCESS] nvm installed!"; \
+	else \
+		echo "   [INFO] nvm already installed, skipping."; \
+	fi
 
 
 # node
@@ -180,7 +184,7 @@ node: install-node
 
 install-node: nvm
 	@echo "   [INFO] installing node..."
-	@. ~/.nvm/nvm.sh && nvm install --lts > /dev/null
+	@. ~/.nvm/nvm.sh && nvm install --lts --no-progress > /dev/null 2>&1
 	@echo "[SUCCESS] node installed!"
 
 
@@ -197,9 +201,13 @@ install-podman:
 kubectl: install-kubectl
 
 install-kubectl: curl
-	@echo "   [INFO] installing kubectl..."
-	@curl -Os "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" > /dev/null
-	@sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl > /dev/null
-	@rm -f kubectl
-	@echo "[SUCCESS] kubectl installed!"
+	@if [ ! -f /usr/local/bin/kubectl ]; then \
+		echo "   [INFO] installing kubectl..."; \
+		curl -Os "https://dl.k8s.io/release/$$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"; \
+		sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl > /dev/null; \
+		rm -f kubectl; \
+		echo "[SUCCESS] kubectl installed!"; \
+	else \
+		echo "   [INFO] kubectl already installed, skipping."; \
+	fi
 
