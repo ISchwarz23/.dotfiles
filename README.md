@@ -19,14 +19,19 @@ cd ~ && git clone git@github.com:ISchwarz23/.dotfiles.git && cd .dotfiles
 
 ### Step 2
 
-Install the config for the tools you use on your system.
+The tools are organized in setups. To install the tools with config on your system select one of the following setups.
 
 ```shell
-make
 make basic-setup
+# or
+make web-dev-setup
+# or
+make dev-ops-setup
+# or
+make full-setup
 ```
 
-In case you want to install only specific configs, you can do so by using the following commands:
+In case you want to install only specific tools with configs, you can do so by using the following commands:
 
 ```shell
 make git
@@ -34,8 +39,8 @@ make zsh
 # ...
 ```
 
-> Please make sure you know what you are doing, when applying only specific configs, as there are some interdependencies.
+> When you install specific tools only, the corresponsing dependencies will be installed as well (e.g. if you want to install a specific zsh plugin without zsh installed, then zsh will be installed first)
 
 ## To Do
 
-- nix shell config and alias
+- nix shell config
