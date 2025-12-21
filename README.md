@@ -38,4 +38,5 @@ make zsh
 
 ## To Do
 
+- make installation repeatable (do not fail if already installed)
 - nix shell config and alias
