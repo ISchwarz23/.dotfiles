@@ -80,7 +80,7 @@ oh-my-zsh: install-oh-my-zsh install-oh-my-zsh-plugins
 install-oh-my-zsh: zsh
 	@if [ ! -d ~/.oh-my-zsh ]; then \
 		echo "   [INFO] installing oh-my-zsh..."; \
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install-pkg.sh)" > /dev/null; \
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null; \
 		echo "[SUCCESS] oh-my-zsh installed!"; \
 	else \
 		echo "   [INFO] oh-my-zsh already installed, skipping..."; \
