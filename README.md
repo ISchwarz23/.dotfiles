@@ -6,13 +6,7 @@ This repository contains all config files of tools in my personal setup. It uses
 
 ### Step 0
 
-_This step only applies if the computer you are setting up is behind a proxy._
-
-Make sure the proxy is configured in all required places:
-- /etc/environment
-- ~/.profile
-- /etc/apt/apt.conf (if you are on Ubuntu)
-- /etc/yum.conf (if you are on CentOS/RHEL)
+In case your system is behind a proxy, follow [this](./PROXY.md) instructions.
 
 ### Step 1
 
