@@ -2,7 +2,7 @@
 
 ## Install Cntlm
 
-TODO
+Download and install cntlm from [here](https://sourceforge.net/projects/cntlm/files/cntlm/cntlm%200.92.3/)
 
 In case your installation did not create a system unit, your can create one at `/etc/systemd/system/cntlm.service` with the following content:
 
