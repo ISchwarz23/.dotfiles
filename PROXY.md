@@ -4,7 +4,7 @@
 
 TODO
 
-In case your installation did not create a system unit, your can create one at `etc/systemd/system/cntlm.service` with the following content:
+In case your installation did not create a system unit, your can create one at `/etc/systemd/system/cntlm.service` with the following content:
 
 ```toml
 [Unit]
@@ -46,11 +46,18 @@ export HTTPS_PROXY=127.0.0.1:3128
 ### /etc/apt/apt.conf (if you are on Ubuntu)
 
 ```
-TODO
+Acquire::http::Proxy "http://127.0.0.1:3128/";
+Acquire::https::Proxy "http://127.0.0.1:3128/";
 ```
 
 ### /etc/yum.conf (if you are on CentOS/RHEL)
 
 ```
-TODO
+proxy=http://127.0.0.1:3128
+```
+
+Make sure permissions are correct:
+
+```sh
+sudo chmod 600 /etc/yum.conf
 ```
