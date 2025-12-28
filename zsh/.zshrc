@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -33,7 +30,7 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-# Auto-start or attach tmux on SSH
+# Prepare auto-start or attach tmux on SSH
 tmux_ssh_autostart() {
   # Only run on SSH, not local shells
   if [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]]; then
