@@ -42,6 +42,24 @@ tmux_ssh_autostart() {
   fi
 }
 
+# Prepare NVM initializarion
+nvm_init() {
+  command -v nvm >/dev/null 2>&1 && return
+
+  # Standard NVM directory
+  export NVM_DIR="$HOME/.nvm"
+
+  # Load nvm if it exists
+  if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    source "$NVM_DIR/nvm.sh"
+  fi
+
+  # Load bash_completion for nvm
+  if [[ -s "$NVM_DIR/bash_completion" ]]; then
+    source "$NVM_DIR/bash_completion"
+  fi
+}
+
 # User configuration
 source ~/.zshrc-custom
 
