@@ -2,7 +2,7 @@ ZSH_CUSTOM ?= $(HOME)/.oh-my-zsh/custom
 
 
 # Collection of setups
-basic-setup: stow curl git oh-my-zsh nvim tmux tmux-xpanes yazi jq
+basic-setup: stow curl git oh-my-zsh nvim tmux tmux-xpanes jq
 
 web-dev-setup: basic-setup nvm node
 dev-ops-setup: basic-setup podman kubectl
@@ -38,19 +38,6 @@ configure-git:
 	@stow git
 	@touch ~/.gitconfig-custom
 	@echo "[SUCCESS] git configured!"
-
-# yazi
-
-yazi: install-yazi configure-yazi
-
-install-yazi:
-	@bash -c "./install-pkg.sh yazi"
-
-configure-yazi:
-	@echo "   [INFO] configuring yazi..."
-	@stow yazi
-	@echo "[SUCCESS] yazi configured!"
-
 
 # jq
 
