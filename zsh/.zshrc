@@ -28,6 +28,12 @@ ZSH_THEME="robbyrussell-nix"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
+# Set Neovim as the default editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+export SUDO_EDITOR="nvim"
+
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Prepare auto-start or attach tmux on SSH
