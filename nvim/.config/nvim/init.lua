@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.opt.laststatus = 3
+vim.opt.cmdheight = 0
 
 require("vim-tweaks")
 require("lazy").setup("plugins")
